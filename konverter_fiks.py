@@ -6,7 +6,6 @@ import glob
 from flask import Flask, request, render_template, send_from_directory, flash, redirect, url_for, after_this_request
 from werkzeug.utils import secure_filename
 
-# --- Konfigurasi ---
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp', 'bmp', 'tiff', 'ico', 'mp4', 'mov', 'avi', 'mkv', 'webm', 'mp3', 'wav', 'm4a', 'ogg', 'flac', 'pdf', 'docx', 'odt', 'html', 'md', 'rtf', 'txt', 'epub', 'tex'}
 app = Flask(__name__)
@@ -14,14 +13,11 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024 # 100MB
 app.secret_key = 'super-secret-key-change-this'
 
-# --- Fungsi Bantuan ---
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def get_subprocess_command(input_path, output_path, original_format, target_format, options={}):
-    """Membuat perintah command-line dengan opsi kustom."""
     
-    # === GAMBAR (ImageMagick) ===
     image_formats = ['png', 'jpg', 'jpeg', 'gif', 'webp', 'bmp', 'tiff']
     if original_format in image_formats and target_format in image_formats + ['ico', 'pdf']:
         command = ['/usr/bin/convert', input_path]
@@ -32,12 +28,10 @@ def get_subprocess_command(input_path, output_path, original_format, target_form
         command.append(output_path)
         return command
 
-    # === VIDEO & AUDIO (FFmpeg) ===
     media_formats = ['mp4', 'mov', 'avi', 'mkv', 'webm', 'mp3', 'wav', 'm4a', 'ogg', 'flac']
     if original_format in media_formats and target_format in media_formats:
         return ['/usr/bin/ffmpeg', '-i', input_path, output_path]
 
-    # === DOKUMEN (Pandoc) ===
     pandoc_input_formats = ['docx', 'odt', 'html', 'md', 'rtf', 'txt', 'epub', 'tex']
     pandoc_output_formats = ['pdf', 'docx', 'odt', 'html', 'md', 'rtf', 'txt', 'epub']
     if original_format in pandoc_input_formats and target_format in pandoc_output_formats:
@@ -45,7 +39,6 @@ def get_subprocess_command(input_path, output_path, original_format, target_form
 
     return None
 
-# --- Rute Aplikasi ---
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -78,7 +71,6 @@ def convert_file():
         input_path = os.path.join(app.config['UPLOAD_FOLDER'], input_filename)
         file.save(input_path)
 
-        # Atur penghapusan file input
         @after_this_request
         def cleanup_input(response):
             if os.path.exists(input_path): os.remove(input_path)
@@ -87,19 +79,15 @@ def convert_file():
         output_filename = f"{filename_base}.{target_format}"
         output_path = os.path.join(app.config['UPLOAD_FOLDER'], output_filename)
 
-        # === FITUR BARU: PDF Multi-Halaman ke ZIP Gambar ===
         if original_extension == 'pdf' and target_format in ['jpg', 'png']:
             try:
-                # Buat folder sementara untuk menyimpan gambar hasil konversi
                 temp_img_dir = os.path.join(app.config['UPLOAD_FOLDER'], unique_id)
                 os.makedirs(temp_img_dir, exist_ok=True)
                 
-                # Perintah ImageMagick untuk mengubah SEMUA halaman
                 img_output_pattern = os.path.join(temp_img_dir, f'page-%d.{target_format}')
                 command = ['/usr/bin/convert', '-density', '150', input_path, '-quality', '85', img_output_pattern]
                 subprocess.run(command, check=True, timeout=300)
 
-                # Buat file ZIP dari semua gambar yang dihasilkan
                 zip_filename = f"{filename_base}.zip"
                 zip_path = os.path.join(app.config['UPLOAD_FOLDER'], zip_filename)
                 
@@ -107,12 +95,10 @@ def convert_file():
                     for img_file in glob.glob(os.path.join(temp_img_dir, f'*.{target_format}')):
                         zipf.write(img_file, os.path.basename(img_file))
 
-                # Hapus gambar dan folder sementara setelah di-zip
                 for img_file in glob.glob(os.path.join(temp_img_dir, f'*.{target_format}')):
                     os.remove(img_file)
                 os.rmdir(temp_img_dir)
-                
-                # Atur agar file zip dihapus setelah diunduh
+
                 @after_this_request
                 def cleanup_zip(response):
                     if os.path.exists(zip_path): os.remove(zip_path)
@@ -125,7 +111,6 @@ def convert_file():
                 flash('Gagal mengonversi PDF ke gambar.')
                 return redirect(url_for('index'))
         
-        # === Logika Konversi Standar (untuk semua kasus lain) ===
         command = get_subprocess_command(input_path, output_path, original_extension, target_format, options=custom_options)
 
         if not command:
