@@ -1,19 +1,19 @@
 <h2>Ini Adalah Web yang bisa mengkonversi FIle secara gratis</h2>
 
 <h3>Cara menggunakannya yaitu :</h3>
-<p>1. Buat environment
+<p>1. Buat environment</p>
    python3 -m venv venv
-2. Lalu aktifkan environment terlebih dahulu
+<p>2. Lalu aktifkan environment terlebih dahulu</p>
    source venv/bin/activate
-3. Install semua alat2 ini :
-   pip install flask
-   sudo apt install pandoc -y
-   sudo apt install ffmpeg -y
-   sudo apt install texlive-latex-base texlive-latex-extra -y
-   pip install pdf2docx
-   sudo apt install imagemagick -y
-   sudo apt install ghostscript -y
-   pip install gunicorn</p>
+<p>3. Install semua alat2 ini :</p>
+   <p>pip install flask</p>
+   <p>sudo apt install pandoc -y</p>
+   <p>sudo apt install ffmpeg -y</p>
+   <p>sudo apt install texlive-latex-base texlive-latex-extra -y</p>
+   <p>pip install pdf2docx</p>
+   <p>sudo apt install imagemagick -y</p>
+   <p>sudo apt install ghostscript -y</p>
+   <p>pip install gunicorn</p>
 
 <h3>Langkah selanjutnya yaitu :</h3>
 <p>A. Jalankan program
