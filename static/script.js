@@ -1,4 +1,3 @@
-// GANTI SELURUH ISI FILE JS DENGAN KODE BARU INI
 document.addEventListener('DOMContentLoaded', function() {
     const fileInput = document.getElementById('file-input');
     const formatSelect = document.getElementById('format-select');
@@ -36,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
             { value: 'm4a', text: 'M4A' },
             { value: 'ogg', text: 'OGG' }
         ],
-        document: [ // Opsi output diperbanyak
+        document: [ 
             { value: 'pdf', text: 'PDF' },
             { value: 'docx', text: 'DOCX (Word)' },
             { value: 'odt', text: 'ODT (OpenDocument)' },
@@ -58,11 +57,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const extension = file.name.split('.').pop().toLowerCase();
         let fileType = '';
         
-        // Daftar input yang sekarang jauh lebih lengkap
         const imageExt = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp', 'tiff'];
         const videoExt = ['mp4', 'mkv', 'flv', 'avi', 'mov', 'webm'];
         const audioExt = ['mp3', 'wav', 'ogg', 'm4a', 'flac'];
-        // TXT DAN LAINNYA SEKARANG DIKENALI SEBAGAI DOKUMEN
         const docExt = ['docx', 'doc', 'odt', 'rtf', 'md', 'html', 'txt', 'epub', 'tex'];
 
         if (imageExt.includes(extension)) {
@@ -73,14 +70,13 @@ document.addEventListener('DOMContentLoaded', function() {
             fileType = 'audio';
         } else if (extension === 'pdf') {
             fileType = 'pdf';
-        } else if (docExt.includes(extension)) { // Logika baru
+        } else if (docExt.includes(extension)) { 
             fileType = 'document';
         }
 
         updateFormatOptions(fileType, extension);
     });
 
-    // ... sisa fungsi lainnya (updateFormatOptions, resetSelect, dll) tetap sama ...
     function updateFormatOptions(fileType, currentExtension) {
         formatSelect.innerHTML = '';
         submitBtn.disabled = true;
@@ -125,7 +121,6 @@ document.addEventListener('DOMContentLoaded', function() {
         jpgQualityOption.style.display = 'none';
     }
     
-    // Tampilkan nilai slider kualitas JPG
     jpgQualitySlider.addEventListener('input', function() {
         jpgQualityValue.textContent = this.value;
     });
