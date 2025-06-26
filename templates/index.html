@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konverter File Serbaguna</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Konverter File Serbaguna</h1>
+        <p>Konversi gambar, video, audio, dan dokumen Anda secara gratis dan aman.</p>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="flash-messages">
+              {% for message in messages %}
+                <div class="flash">{{ message }}</div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <form action="/convert" method="post" enctype="multipart/form-data" id="converter-form">
+            <div class="form-group">
+                <label for="file">1. Pilih File Anda</label>
+                <input type="file" name="file" id="file-input" required>
+            </div>
+
+            <div class="form-group">
+                <label for="format">2. Pilih Format Tujuan</label>
+                <select name="format" id="format-select" required>
+                    <option value="" disabled selected>Pilih file dulu...</option>
+                </select>
+            </div>
+            
+            <div id="custom-options" style="display: none;">
+                <hr>
+                <h4>Opsi Tambahan</h4>
+                <div class="form-group" id="jpg-quality-option" style="display: none;">
+                    <label for="jpg_quality">Kualitas JPG: <span id="jpg-quality-value">85</span></label>
+                    <input type="range" id="jpg_quality" name="jpg_quality" min="10" max="100" value="85" class="slider">
+                </div>
+                </div>
+
+            <button type="submit" class="submit-btn" id="submit-btn" disabled>Konversi Sekarang</button>
+        </form>
+        
+        <div class="spinner" id="spinner" style="display:none;"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

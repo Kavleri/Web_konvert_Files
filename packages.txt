@@ -1,0 +1,8 @@
+ffmpeg
+pandoc
+texlive-latex-base
+texlive-latex-extra
+ghostscript
+pdf2docx
+imagemagick -y
+gunicorn

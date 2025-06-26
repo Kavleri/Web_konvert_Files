@@ -1,0 +1,117 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f4f7f9;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+h1 {
+    color: #1a2533;
+    margin-bottom: 10px;
+}
+
+p {
+    color: #5a6978;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #3d4a5c;
+}
+
+input[type="file"], select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #dcdfe6;
+    border-radius: 6px;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+input[type="file"]::file-selector-button {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover:not(:disabled) {
+    background-color: #357abd;
+}
+
+.submit-btn:disabled {
+    background-color: #a0c3e8;
+    cursor: not-allowed;
+}
+
+footer {
+    margin-top: 30px;
+    font-size: 12px;
+    color: #8492a6;
+    border-top: 1px solid #e5e9f2;
+    padding-top: 20px;
+}
+
+/* Flash Messages */
+.flash-messages {
+    margin-bottom: 20px;
+}
+.flash {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #f5c6cb;
+}
+/* Spinner */
+.spinner {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #4a90e2;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
