@@ -21,7 +21,7 @@
 B. lalu klik URL-nya
    http://127.0.0.1:5000</p>
 
-<h3>dan akhirnya alat konversi berhasil diaktifkan</h3>\n
+<h3>dan akhirnya alat konversi berhasil diaktifkan</h3><br>
 <h2>Selamat! anda bisa menkonversi semua jenis file secara gratis</h2>
 
 <i>catatan : Ini hanya bisa dijalankan di lokalhost saja, jikalau ingin deploy, anda harus menggunakan atau sewa server.</i>
