@@ -17,11 +17,11 @@
 
 <h3>Langkah selanjutnya yaitu :</h3>
 <p>A. Jalankan program
-   python3 app konverter_fiks.py\n
-B. lalu klik URL-nya
+   python3 app konverter_fiks.py</p>
+</>B. lalu klik URL-nya
    http://127.0.0.1:5000</p>
 
-<h3>dan <h2>BOOM!</h2>akhirnya alat konversi berhasil diaktifkan</h3>
+<h3>dan <i>BOOM!</i>akhirnya alat konversi berhasil diaktifkan</h3>
 <h2>Selamat! anda bisa menkonversi semua jenis file secara gratis</h2>
 
 <i>catatan : Ini hanya bisa dijalankan di lokalhost saja, jikalau ingin deploy, anda harus menggunakan atau sewa server.</i>
