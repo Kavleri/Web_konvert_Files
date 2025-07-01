@@ -44,7 +44,7 @@
 
    ```bash
    pip install gunicorn
-   ```bash
+   ```
 
 <h3>Langkah selanjutnya yaitu :</h3>
 <li>A. Jalankan program</li>
