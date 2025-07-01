@@ -1,62 +1,52 @@
-<h2>Ini Adalah Web yang bisa mengkonversi FIle secara gratis</h2>
+<h2>Aplikasi Konverter File</h2><br>
+<p>Sebuah aplikasi web sederhana yang dibangun dengan Flask untuk mengkonversi berbagai format file secara gratis di lingkungan lokal.</p><br>
+<h2>Prasyarat</h2><br>
+<p>Sebelum memulai, pastikan sistem Anda (khususnya untuk sistem berbasis Debian/Ubuntu) memiliki semua dependensi yang diperlukan.</p><br>
+<li>Python 3.8+</li>
+<li>Pandoc</li>
+<li>FFmpeg</li>
+<li>TeX Live</li>
+<li>ImageMagick</li>
+<li>Ghostscript</li><br>
+<h2>Instalasi & Konfigurasi</h2><br>
+<p>Ikuti langkah-langkah berikut untuk menginstal dan menjalankan aplikasi di lingkungan lokal Anda.</p><br>
+<li>Buat dan Aktifkan Virtual Environment</li><br>
+<p>Perintah ini akan membuat folder venv di direktori proyek Anda untuk mengisolasi dependensi.</p><br>
 
-<h3>Cara menggunakannya yaitu :</h3>
-<p>1. Buat environment</p>
-   
    ```bash
    python3 -m venv venv
-   ```
-
-<p>2. Lalu aktifkan environment terlebih dahulu</p>
-   
-   ```bash
    source venv/bin/activate
    ```
-<p>3. Install semua alat2 ini :</p>
-   
+
+<li>Instal Dependensi Sistem</li><br>
+<p>Jalankan perintah berikut untuk menginstal semua tool yang dibutuhkan oleh aplikasi di level sistem operasi.</p><br>
+
    ```bash
-   pip install flask
-   ```
-   
-   ```bash
-   sudo apt install pandoc -y
+   sudo apt update && sudo apt install pandoc ffmpeg texlive-latex-base texlive-latex-extra imagemagick ghostscript -y
    ```
 
+<li>Instal Paket Python</li><br>
+<p>Instal semua paket Python yang diperlukan oleh Flask dan proses konversi.</p><br>
+
    ```bash
-   sudo apt install ffmpeg -y
+   pip install Flask pdf2docx gunicorn
+   ```
+<i>Catatan: Disarankan untuk menyimpan daftar paket ini dalam file requirements.txt untuk instalasi yang lebih mudah (pip install -r requirements.txt).</i>
+
+<h2>Menjalankan Aplikasi</h2><br>
+<p>Setelah semua instalasi selesai, Anda dapat menjalankan aplikasi.</p><br>
+<li>Jalankan Server Flask</li><br>
+<p>Gunakan perintah berikut untuk memulai server pengembangan lokal. Ganti <i>konverter_fiks.py</i> dengan nama file utama aplikasi Anda.</p><br>
+
+   ```bash
+   python3 konverter_fiks.py
    ```
 
-   ```bash
-   sudo apt install texlive-latex-base texlive-latex-extra -y
-   ```
-   
-   ```bash
-   pip install pdf2docx
-   ```
-   
-   ```bash
-   sudo apt install imagemagick -y
-   ```
+<li>Akses Aplikasi</li><br>
+<p>Buka browser Anda dan akses URL berikut:</p><br>
+<a href>http://127.0.0.1:5000</a><br>
+<h4>Aplikasi konverter Anda sekarang sudah aktif dan siap digunakan.</h4>
 
-   ```bash
-   sudo apt install ghostscript -y
-   ```bash
-
-   ```bash
-   pip install gunicorn
-   ```
-
-<h3>Langkah selanjutnya yaitu :</h3>
-<li>A. Jalankan program</li>
-
-   ```bash
-   python3 app konverter_fiks.py
-   ```
-
-<li>B. lalu klik URL-nya</li>
-<a href>http://127.0.0.1:5000</a>
-
-<h3>dan <i>BOOM!</i> akhirnya alat konversi berhasil diaktifkan</h3>
-<h2>Selamat! anda bisa menkonversi semua jenis file secara gratis</h2>
-
-<i>catatan : Ini hanya bisa dijalankan di lokalhost saja, jikalau ingin deploy, anda harus menggunakan atau sewa server.</i>
+<h2>Catatan Tambahan</h2><br>
+<li><b>Lingkungan Lokal</b> : Pengaturan ini dirancang untuk berjalan di <b>localhost.</b></li><br>
+<li><b>Deployment</b> : Untuk men-deploy aplikasi ini ke server publik, sangat disarankan untuk menggunakan production-ready web server seperti <b>Gunicorn</b> yang di-proxy oleh Nginx.</li>
