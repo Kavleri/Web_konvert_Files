@@ -50,3 +50,7 @@
 <h2>Catatan Tambahan</h2><br>
 <li><b>Lingkungan Lokal</b> : Pengaturan ini dirancang untuk berjalan di <b>localhost.</b></li><br>
 <li><b>Deployment</b> : Untuk men-deploy aplikasi ini ke server publik, sangat disarankan untuk menggunakan production-ready web server seperti <b>Gunicorn</b> yang di-proxy oleh Nginx.</li>
+
+# Lisensi
+
+Skrip ini dirilis di bawah lisensi <a href="https://github.com/Kavleri/Web_konvert_Files/blob/main/LICENSE">MIT License</a>. Anda bebas untuk menggunakan, memodifikasi, dan mendistribusikan ulang skrip ini sesuai ketentuan lisensi.
